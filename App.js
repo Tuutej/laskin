@@ -44,9 +44,9 @@ const SimpleCalc = () => {
         onChangeText={setNum2}
       />
       <View style={styles.buttonContainer}>
-        <Button title="+" onPress={addition} style={styles.button} />
+        <Button title="+" onPress={addition} />
         <View style={{ width: 40 }} />
-        <Button title="-" onPress={subtraction} style={styles.button} />
+        <Button title="-" onPress={subtraction} />
       </View>
       <FlatList
         data={data}
