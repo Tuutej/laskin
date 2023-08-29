@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import { View, Text, Button, Alert, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 const SimpleCalc = () => {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [result, setResult] = useState("");
+  const [data, setData] = useState([]);
 
   const addition = () => {
     const sum = parseFloat(num1) + parseFloat(num2);
     setResult(`Summa: ${sum}`);
+    setData([...data, `Summa: ${num1} + ${num2} = ${sum}`]);
   };
 
   const subtraction = () => {
     const difference = parseFloat(num1) - parseFloat(num2);
     setResult(`Ero: ${difference}`);
+    setData([...data, `Ero: ${num1} - ${num2} = ${difference}`]);
   };
 
   return (
@@ -38,6 +48,11 @@ const SimpleCalc = () => {
         <View style={{ width: 40 }} />
         <Button title="-" onPress={subtraction} style={styles.button} />
       </View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => <Text>{item}</Text>}
+        keyExtractor={(item, index) => index.toString()}
+      />
       <StatusBar style="auto" />
     </View>
   );
